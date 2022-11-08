@@ -19,6 +19,7 @@ class Main extends StatelessWidget {
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
+          title: 'Weather App',
           debugShowCheckedModeBanner: false,
           onGenerateRoute: onGenerateRoute,
           theme: ThemeData(
