@@ -5,8 +5,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class WeatherCard extends StatelessWidget {
   const WeatherCard({
-    Key? key,
+
+    Key? key, required this.temperature, required this.description, required this.image,
   }) : super(key: key);
+
+
+  final String temperature;
+  final String description;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,8 @@ class WeatherCard extends StatelessWidget {
           ),
           8.verticalSpace,
           Text(
-            '00:12 PM',
+            // '00:12 PM',
+            description,
             style: TextStyle(
               color: Colors.black.withOpacity(0.3),
               fontSize: 25.sp,
@@ -36,7 +43,7 @@ class WeatherCard extends StatelessWidget {
           8.verticalSpace,
 
           Text(
-            '23°',
+            '${temperature}°',
             style: TextStyle(
               fontSize: 56.sp,
               fontWeight: FontWeight.w400,

@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weather_app/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_app/datas/datas.dart';
 
 class MenuButton extends StatelessWidget {
@@ -50,7 +52,11 @@ class MenuButton extends StatelessWidget {
                     return SizedBox(
                       height: 100.h,
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          WeatherBloc weatherBloc = BlocProvider.of<WeatherBloc>(context);
+                          weatherBloc.add(GetWeatherEvent(cityName: provinces[index]));
+                        },
                         child: Text(
                           provinces[index],
                           style: TextStyle(

@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:weather_app/blocs/weather_bloc/weather_bloc.dart';
+import 'package:weather_app/locator.dart';
 import 'package:weather_app/screens/screens.dart';
 
 void main() async {
+
+  Locator.setupLocator();
+
   await ScreenUtil.ensureScreenSize();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
+
+
   runApp(Main());
 }
 
@@ -18,12 +26,15 @@ class Main extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (BuildContext context, Widget? child) {
-        return MaterialApp(
-          title: 'Weather App',
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: onGenerateRoute,
-          theme: ThemeData(
-            fontFamily: 'Urbanist',
+        return BlocProvider(
+          create: (context) => WeatherBloc(),
+          child: MaterialApp(
+            title: 'Weather App',
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: onGenerateRoute,
+            theme: ThemeData(
+              fontFamily: 'Urbanist',
+            ),
           ),
         );
       },
